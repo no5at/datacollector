@@ -1,3 +1,4 @@
-require_relative 'model/ticker_data'
+require_relative 'models/ticker_data'
+require_relative 'services/kraken_client'
 
 puts 'Hello World'
