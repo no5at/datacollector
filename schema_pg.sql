@@ -9,3 +9,18 @@ CREATE TABLE ticker_data (
   last_trade_price FLOAT8,
   last_trade_volume FLOAT8
 );
+
+CREATE TABLE trigger (
+  id SERIAL PRIMARY KEY,
+  created_at TIMESTAMP WITH TIME ZONE,
+  trade_pair TEXT,
+  low FLOAT8,
+  high FLOAT8
+);
+
+CREATE TABLE defcon (
+  id SERIAL PRIMARY KEY,
+  updated_at TIMESTAMP WITH TIME ZONE,
+  trade_pair TEXT,
+  level INTEGER
+);

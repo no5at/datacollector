@@ -9,3 +9,18 @@ CREATE TABLE ticker_data (
   last_trade_price REAL,
   last_trade_volume REAL
 );
+
+CREATE TABLE trigger (
+  id INTEGER PRIMARY KEY,
+  created_at TEXT,
+  trade_pair TEXT,
+  low REAL,
+  high REAL
+);
+
+CREATE TABLE defcon (
+  id INTEGER PRIMARY KEY,
+  updated_at TEXT,
+  trade_pair TEXT,
+  level INTEGER
+);
