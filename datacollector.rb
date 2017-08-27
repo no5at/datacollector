@@ -6,6 +6,14 @@ require_relative 'services/kraken_client'
 ActiveRecord::Base.establish_connection(
   :adapter => "sqlite3",
   :database => "datacollector.sqlite"
+
+#  :adapter => 'postgresql',
+#  :database => 'datacollector',
+#  :host => 'localhost',
+#  :port => '5432',
+#  :username => 'datacollector',
+#  :password => 'kauai81718'
+
 )
 
 def store(ticker_response)
