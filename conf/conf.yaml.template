@@ -1,0 +1,15 @@
+db:
+  adapter: sqlite3
+  database: datacollector.sqlite
+# host: localhost
+# port: 5432
+# username: db_username
+# password: db_password
+
+mail:
+  address: smpt.example.com
+  port: 25
+  user_name: user@example.com
+  password: email_password
+  authentication: plain
+  enable_starttls_auto: true

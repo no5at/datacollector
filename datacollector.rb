@@ -4,6 +4,19 @@ require_relative 'db'
 require_relative 'models/ticker_data'
 require_relative 'services/kraken_client'
 
+ActiveRecord::Base.establish_connection(
+  :adapter => "sqlite3",
+  :database => "datacollector.sqlite"
+
+#  :adapter => 'postgresql',
+#  :database => 'datacollector',
+#  :host => 'localhost',
+#  :port => '5432',
+#  :username => 'datacollector',
+#  :password => 'my_password'
+
+)
+
 def store(ticker_response)
   pairs = ticker_response['result'].keys
 
