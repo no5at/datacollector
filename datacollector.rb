@@ -1,26 +1,24 @@
+require 'yaml'
 require 'active_record'
 
-require_relative 'db'
 require_relative 'models/ticker_data'
 require_relative 'services/kraken_client'
+require_relative 'services/notification_service'
 
-ActiveRecord::Base.establish_connection(
-  :adapter => "sqlite3",
-  :database => "datacollector.sqlite"
+config = YAML::load_file('conf/conf.yaml')
 
-#  :adapter => 'postgresql',
-#  :database => 'datacollector',
-#  :host => 'localhost',
-#  :port => '5432',
-#  :username => 'datacollector',
-#  :password => 'my_password'
+ActiveRecord::Base.establish_connection(config['db'])
 
-)
+# Kraken client
+kraken = Kraken::Client.new()
+
+# E-Mail client/notification service
+notification_service = NotificationService.new(config['smtp'], config['notifications'])
 
 def store(ticker_response)
   pairs = ticker_response['result'].keys
 
-  pairs.each do |pair|
+  pairs.map do |pair|
     data = ticker_response['result'][pair]
 
     t = TickerData.new
@@ -32,15 +30,18 @@ def store(ticker_response)
     t.last_trade_price = data['c'][0].to_f
     t.last_trade_volume = data['c'][1].to_f
     t.save
+    t
   end
 end
 
-kraken = Kraken::Client.new()
 while true do
   begin
-    store(kraken.ticker('XBTEUR,BCHEUR'))
-  rescue
+    ticker_data = store(kraken.ticker('XBTEUR,BCHEUR'))
+    # TODO check DB for rule-based notification triggers
+    notification_service.notify(ticker_data)
+  rescue => e
     puts 'Error fetching current rates'
+    puts e
   end
 
   sleep 5 * 60
