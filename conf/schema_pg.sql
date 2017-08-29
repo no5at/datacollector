@@ -10,12 +10,12 @@ CREATE TABLE ticker_data (
   last_trade_volume FLOAT8
 );
 
-CREATE TABLE trigger (
+CREATE TABLE triggers (
   id SERIAL PRIMARY KEY,
   created_at TIMESTAMP WITH TIME ZONE,
   trade_pair TEXT,
-  low FLOAT8,
-  high FLOAT8
+  trigger_type TEXT,
+  threshold FLOAT8
 );
 
 CREATE TABLE defcon (

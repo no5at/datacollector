@@ -10,12 +10,12 @@ CREATE TABLE ticker_data (
   last_trade_volume REAL
 );
 
-CREATE TABLE trigger (
+CREATE TABLE triggers (
   id INTEGER PRIMARY KEY,
   created_at TEXT,
   trade_pair TEXT,
-  low REAL,
-  high REAL
+  trigger_type TEXT,
+  threshold REAL
 );
 
 CREATE TABLE defcon (
