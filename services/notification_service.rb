@@ -14,7 +14,7 @@ class NotificationService
     end
   end
 
-  def self.should_notify?(trade_pair, data)
+  def self.get_firing_notifications(trade_pair)
     recent_ticker_data =
       TickerData
         .where(trade_pair: trade_pair)
@@ -24,15 +24,13 @@ class NotificationService
     recent_price = recent_ticker_data.map { |t| t.last_trade_price }
 
     if (recent_price.length == 2)
-      delta = recent_price[0] - recent_price[1]
-
-      # TODO what now?
-
       triggers = Trigger.where trade_pair: trade_pair
-      triggers.find do |trigger|
-        puts trigger
-        false
+      triggers.select do |t|
+        f = (recent_price[0] - t.threshold) * (recent_price[1] - t.threshold)
+        f < 0
       end
+    else
+      []
     end
   end
 

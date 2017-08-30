@@ -7,7 +7,15 @@ require_relative 'services/notification_service'
 
 config = YAML::load_file('conf/conf.yaml')
 
-ActiveRecord::Base.establish_connection(config['db'])
+db = ActiveRecord::Base.establish_connection(config['db'])
+
+if (!db.connection.table_exists? 'ticker_data')
+  puts 'Empty database - initializing'
+  statements = File.read('conf/schema_sqlite3.sql').strip.split(';')
+  statements.each do |sql|
+    db.connection.execute (sql << ';').strip
+  end
+end
 
 # Kraken client
 kraken = Kraken::Client.new()
