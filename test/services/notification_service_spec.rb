@@ -7,18 +7,25 @@ class NotificationServiceSpec < Test::Unit::TestCase
   include Rack::Test::Methods
 
   config = YAML::load_file('conf/conf.yaml')
-  ActiveRecord::Base.establish_connection(config['db'])
+  db = ActiveRecord::Base.establish_connection(config['db.test'])
+
+  puts 'Initializing test DB'
+  statements = File.read('conf/schema_sqlite3.sql').strip.split(';')
+  statements.each do |sql|
+    db.connection.execute (sql << ';').strip
+  end
+
+  puts 'Loading fixtures'
+  statements = File.read('test/fixtures.sql').strip.split(';')
+  statements.each do |sql|
+    db.connection.execute (sql << ';').strip
+  end
 
   def test_should_notify
     puts 'Testing notification_service::should_notify?'
-
-    # t = Trigger.new
-    # t.trade_pair = 'BCHEUR'
-    # t.trigger_type = 'TRIPWIRE'
-    # t.threshold = 3800
-    # t.save
-
-    NotificationService::should_notify?('BCHEUR', 'bar')
+    notifications = NotificationService::get_firing_notifications('XBTEUR')
+    puts notifications.length
+    puts notifications
   end
 
 end
