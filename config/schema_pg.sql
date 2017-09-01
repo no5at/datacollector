@@ -1,4 +1,4 @@
-CREATE TABLE ticker_data (
+CREATE TABLE ticker_info (
   id SERIAL PRIMARY KEY,
   created_at TIMESTAMP WITH TIME ZONE,
   trade_pair TEXT,

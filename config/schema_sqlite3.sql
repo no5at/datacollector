@@ -1,4 +1,4 @@
-CREATE TABLE ticker_data (
+CREATE TABLE ticker_info (
   id INTEGER PRIMARY KEY,
   created_at TEXT,
   trade_pair TEXT,

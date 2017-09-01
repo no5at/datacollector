@@ -15,5 +15,4 @@ smtp:
   enable_starttls_auto: true
 
 notifications:
-  sender: sender@example.com
   recipient: recipient@example.com
