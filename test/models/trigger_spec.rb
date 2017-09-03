@@ -24,9 +24,13 @@ class TriggerSpec < Test::Unit::TestCase
     create_triggers("XBTEUR", [ 3700, 3800, 3900 ])
     create_triggers("BCHEUR", [ 480, 500, 520 ])
 
-    fired = Trigger::get_fired_triggers("XBTEUR")
+    fired_xbteur = Trigger::get_fired_triggers("XBTEUR")
+    assert_equal 1, fired_xbteur.length
+    assert_equal fired_xbteur[0].threshold, 3800.0
 
-    # TODO check if correct
+    fired_bcheur = Trigger::get_fired_triggers("BCHEUR")
+    assert_equal 1, fired_bcheur.length
+    assert_equal fired_bcheur[0].threshold, 500.0
 
     db.drop_database
   end
