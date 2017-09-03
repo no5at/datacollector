@@ -1,5 +1,5 @@
-require 'active_record'
+require "active_record"
 
-class TickerData < ActiveRecord::Base
-  self.table_name = "ticker_data"
+class TickerInfo < ActiveRecord::Base
+  self.table_name = "ticker_info"
 end
