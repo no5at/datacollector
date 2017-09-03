@@ -7,7 +7,6 @@ require_relative "../../lib/models/trigger"
 class TriggerSpec < Test::Unit::TestCase
   include Rack::Test::Methods
 
-
   def test_fired_triggers
     db = DB.new({ "adapter" => "sqlite3", "database" => "tmp/test_db_trigger_spec.sqlite" })
     db.load_fixtures("test/fixtures.sql")

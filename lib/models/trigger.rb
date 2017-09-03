@@ -5,7 +5,6 @@ require_relative "ticker_info"
 class Trigger < ActiveRecord::Base
 
   def self.get_fired_triggers(trade_pair)
-
     ticker_history = TickerInfo
       .where(trade_pair: trade_pair)
       .order(created_at: :desc)

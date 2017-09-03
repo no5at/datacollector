@@ -1,5 +1,5 @@
-require 'active_record'
+require "active_record"
 
 class Defcon < ActiveRecord::Base
-  self.table_name = "ticker_data"
+  self.table_name = "defcon"
 end

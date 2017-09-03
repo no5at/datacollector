@@ -1,8 +1,7 @@
 require "active_record"
 require "fileutils"
 
-# Encapsulates DB init code. Currently works for
-# SQLITE DB only.
+# Encapsulates DB init code. Currently works for SQLITE only.
 class DB
 
   def initialize(config)
