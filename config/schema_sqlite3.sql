@@ -21,6 +21,6 @@ CREATE TABLE triggers (
 CREATE TABLE defcon (
   id INTEGER PRIMARY KEY,
   updated_at TEXT,
-  trade_pair TEXT,
-  level INTEGER
+  level INTEGER,
+  poll_interval INTEGER
 );
