@@ -6,13 +6,11 @@ db:
 # username: db_username
 # password: db_password
 
-smtp:
+mailer:
   address: smpt.example.com
   port: 25
   user_name: sender@example.com
   password: email_password
   authentication: plain
   enable_starttls_auto: true
-
-notifications:
   recipient: recipient@example.com

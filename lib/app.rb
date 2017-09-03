@@ -1,12 +1,17 @@
 require 'yaml'
-require 'active_record'
+# require 'active_record'
 
-require_relative 'models/ticker_data'
-require_relative 'services/kraken_client'
-require_relative 'services/notification_service'
+require_relative "helpers/mailer"
+# require_relative 'models/ticker_data'
+# require_relative 'services/kraken_client'
+# require_relative 'services/notification_service'
 
-config = YAML::load_file('conf/conf.yaml')
+config = YAML::load_file('config/conf.yaml')
 
+mailer = Mailer.new(config['mailer'])
+mailer.send('Testing', 'Just a test message.')
+
+=begin
 db = ActiveRecord::Base.establish_connection(config['db'])
 
 if (!db.connection.table_exists? 'ticker_data')
@@ -54,3 +59,4 @@ while true do
 
   sleep 5 * 60
 end
+=end
