@@ -1,2 +1,3 @@
 datacollector.sqlite
 conf/conf.yaml
+tmp/*
