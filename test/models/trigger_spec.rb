@@ -8,7 +8,8 @@ class TriggerSpec < Test::Unit::TestCase
 
 
   def test_fired_triggers
-    db = DB.new({ 'adapter' => 'sqlite3', 'database' => 'tmp/db_trigger_spec.sqlite' })
+    db = DB.new({ "adapter" => "sqlite3", "database" => "tmp/test_db_trigger_spec.sqlite" })
+    db.load_fixtures("test/fixtures.sql")
 
     # Load fixtures, so that we have price history
 

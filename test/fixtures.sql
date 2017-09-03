@@ -1,4 +1,4 @@
-INSERT INTO ticker_data (
+INSERT INTO ticker_info (
   created_at,
   trade_pair,
   ask_price,
@@ -14,7 +14,7 @@ VALUES (
   3799.0, 1.0,
   3799.0, 1.0);
 
-INSERT INTO ticker_data (
+INSERT INTO ticker_info (
   created_at,
   trade_pair,
   ask_price,
@@ -29,14 +29,3 @@ VALUES (
   3801.0, 1.0,
   3801.0, 1.0,
   3801.0, 1.0);
-
-INSERT INTO triggers (
-  created_at,
-  trade_pair,
-  trigger_type,
-  threshold)
-VALUES (
-  '2017-08-30 22:05:00 UTC',
-  'XBTEUR',
-  'TRIPWIRE',
-  3800.0)
