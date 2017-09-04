@@ -1,7 +1,8 @@
-source 'https://rubygems.org'
-gem 'activerecord'
-gem 'httparty'
-gem 'addressable'
-gem 'sqlite3'
-gem 'mail'
-gem 'rack-test'
+source "https://rubygems.org"
+gem "activerecord"
+gem "httparty"
+gem "addressable"
+gem "sqlite3"
+gem "mail"
+gem "rack-test"
+gem "logger"
