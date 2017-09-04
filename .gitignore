@@ -1,3 +1,4 @@
 .bundle
+kmonitor.sqlite
 config/conf.yaml
 tmp/*

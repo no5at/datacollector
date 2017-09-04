@@ -8,22 +8,17 @@ class NotificationService
 
   def notify_if_needed(ticker_info_list)
     triggers = ticker_info_list.flat_map do |info|
-      Ticker::get_fired_triggers(info.trade_pair)
-    end
-
-    triggers.each do |trigger|
-      notification = create_notification(trigger)
-      mailer.send(notification["subject"], notification["message"])
+      notify(info, Trigger::get_fired_trigger(info.trade_pair))
     end
   end
 
-  private
-    # TODO dummy only
-    def create_notification(trigger)
-      {
-        "subject" => "A Notification!",
-        "message" => "Just a notification, to be completed later"
-      }
-    end
+  def notify(ticker_info, fired_triggers)
+    notification = {
+      "subject" => "A Notification!",
+      "message" => "Just a notification, to be completed later"
+    }
+
+    @mailer.send(notification["subject"], notification["message"])
+  end
 
 end
