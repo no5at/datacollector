@@ -7,9 +7,9 @@ class TriggerSpec < Test::Unit::TestCase
   include Rack::Test::Methods
 
   def test_api_connectivity
-      # Just test if no exception happens
-      kraken = Kraken::Client.new()
-      time = kraken.server_time
-    end
+    # Just test if no exception happens
+    kraken = Kraken::Client.new()
+    time = kraken.server_time
+  end
 
 end
